@@ -1,4 +1,4 @@
-import requests as req
+import requests as req # type: ignore
 # ----------------------------------------------------------------
 import random,re
 from logo import showLogo
@@ -85,7 +85,7 @@ def BruteForcePhoneNumber():
         while(True):
             if len(dictionarys)==10**b2[1].count("*"):
                 print("=======================================================================")
-                print(">>Count Password is ",len(dictionarys),"Brute Force Maximum.")
+                print(">> Count Password is ",len(dictionarys),"Brute Force Maximum.")
                 print("=======================================================================")
                 break
             # password = str(randomPhoneNumber("09290"))
@@ -105,6 +105,7 @@ def BruteForcePhoneNumber():
 
 showLogo()
 while(True):
+    print("Type help to use command")
     res = input(">> ")
     if(res=="help"):
         print("""========================================================================================================
