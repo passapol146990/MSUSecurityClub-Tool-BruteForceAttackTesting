@@ -104,6 +104,8 @@ def BruteForcePhoneNumber():
                 break
 
 showLogo()
+
+# For Type Command
 while(True):
     print("Type help to use command")
     res = input(">> ")
@@ -116,3 +118,5 @@ while(True):
         BruteForcePhoneNumber()
     elif(res=="exit"):
         break
+    else:
+        print("You don't know command? Try to type -> help")
