@@ -105,11 +105,11 @@ def BruteForcePhoneNumber():
 
 showLogo()
 while(True):
-    res = input("MSU >> ")
+    res = input(">> ")
     if(res=="help"):
         print("""========================================================================================================
 \t- help \t\t :Use Commands "help" Show All Command.
-\t- BrutePhone \t :Use Commands "BrutePhone" Brute Force Attacking urls.
+\t- BrutePhone \t :Use Commands "BrutePhone" Brute Force Attacking url.
 ========================================================================================================""")
     elif(res=="BrutePhone"):
         BruteForcePhoneNumber()
