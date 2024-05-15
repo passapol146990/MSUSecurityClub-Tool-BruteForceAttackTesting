@@ -1,6 +1,6 @@
 # MSUSecurityClub-Tool-BruteForceAttackTesting
 
-<img src="./image.png">
+<img src="./component/image.png">
 
 # How to run
 

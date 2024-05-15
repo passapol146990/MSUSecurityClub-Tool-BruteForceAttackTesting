@@ -1,7 +1,7 @@
 import requests as req
 import argparse
 import random
-from logo import showLogo
+from component.logo import showLogo
 
 def generatePhone(template: str):
   rng = [str(random.randint(0, 9)) for _ in range(template.count("*"))]
