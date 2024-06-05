@@ -18,4 +18,4 @@
 -   `pip install -r requirements.txt`
 -   `python main.py -u a@a.com -p 0987***321 -m POST http://example.com/login`
 ## Run on exefile
--   `Attack -u a@a.com -p 0987***321 -m POST http://example.com/login`
+-   `cyber -u a@a.com -p 0987***321 -m POST http://example.com/login`
