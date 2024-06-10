@@ -103,7 +103,7 @@ def BruteForcePhoneNumber():
                 break
 
 showLogo()
-print(">> Cyber-hack -u a@a.coam -p 09876***12 -url https://a.com/login")
+print(">> Cyber-hack -u a@a.coam -p 09876***12 https://a.com/login")
 try:
     while(True):
         res = input(">> ")
@@ -128,7 +128,7 @@ try:
     \t- Cyber-hack \t :Use Commands "Cyber-hack" Brute Force Attacking url.
     \t -u \t :username.
     \t -p \t :password Ex : -p 0987***21 will random 0-9 use "*". 
-    \t Example cmd: Cyber-hack -u a@a.com -p 09876***12 -url https://a.com/login
+    \t Example cmd: Cyber-hack -u a@a.com -p 09876***12 https://a.com/login
     ========================================================================================================""")
         elif(res=="exit"):
             break
