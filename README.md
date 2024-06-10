@@ -2,20 +2,17 @@
 
 <img src="./component/image.png">
 
-# How to run
+# How to run App exe
 
--   type `pip install -r requirements.txt`
--   type `python main.py -h` to see help
+-  `Run file name: Cyber-App`
 
-# How to run if don't have python
+## Run on python
 
--   Download Bruteforce.exe on releases
--   Open Command Prompt with same path of Bruteforce.exe
--   type `main -h` to see help
+-   `python MSU-BruteForceAttack.py`
+
 
 # Example Command
-## Run on python
--   `pip install -r requirements.txt`
--   `python main.py -u a@a.com -p 0987***321 -m POST http://example.com/login`
-## Run on exefile
--   `main -u a@a.com -p 0987***321 -m POST http://example.com/login`
+
+-    `Cyber-hack -u a@a.coam -p 09876***12 https://a.com/login`
+-    `-help`
+
